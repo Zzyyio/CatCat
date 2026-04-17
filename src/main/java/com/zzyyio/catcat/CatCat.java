@@ -1,5 +1,6 @@
 package com.zzyyio.catcat;
 
+import com.zzyyio.catcat.init.ModProperties;
 import com.zzyyio.catcat.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -21,7 +22,7 @@ public class CatCat implements ModInitializer {
 		// Proceed with mild caution.
 
         ModItems.initialize();
-        ModItems.setAttributes();
+        ModProperties.register();
 		LOGGER.info("Hello Fabric world!");
 	}
 }
