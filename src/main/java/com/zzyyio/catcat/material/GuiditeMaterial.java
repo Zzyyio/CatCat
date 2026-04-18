@@ -1,10 +1,14 @@
 package com.zzyyio.catcat.material;
 
 import com.zzyyio.catcat.item.ModItems;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 
-public class GuiditeMaterial implements ToolMaterial {
+public class GuiditeMaterial implements ToolMaterial{
 
     public static final GuiditeMaterial guidite = new GuiditeMaterial();
 
@@ -28,13 +32,16 @@ public class GuiditeMaterial implements ToolMaterial {
         return 3;
     }
 
+
     @Override
     public int getEnchantability() {
         return 100;
     }
 
+
     @Override
     public Ingredient getRepairIngredient() {
         return Ingredient.ofItems(ModItems.test);
     }
+
 }

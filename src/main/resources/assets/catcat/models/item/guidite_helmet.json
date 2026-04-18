@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "catcat:item/guidite_armor/guidite_helmet"
+  }
+}

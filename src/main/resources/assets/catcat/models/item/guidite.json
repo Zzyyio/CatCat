@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "catcat:guidite"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "catcat:guidite"
+      }
+    ]
+  }
+}
