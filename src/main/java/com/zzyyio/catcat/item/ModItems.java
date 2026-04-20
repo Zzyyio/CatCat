@@ -1,8 +1,8 @@
 package com.zzyyio.catcat.item;
 
 import com.zzyyio.catcat.CatCat;
+import com.zzyyio.catcat.block.ModBlocks;
 import com.zzyyio.catcat.material.GuiditeArmorMaterial;
-import com.zzyyio.catcat.material.GuiditeMaterial;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.*;
@@ -21,7 +21,7 @@ public class ModItems {
 
 
     public static final RegistryKey<ItemGroup> CUSTOM_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier("custom_group"));
-    public static final ItemGroup CUSTOM_GROUP = FabricItemGroup.builder()
+    public static final ItemGroup CUSTOM_GROUP_ENTRY = FabricItemGroup.builder()
             .icon(() -> new ItemStack(ModItems.guidite_sword))
             .displayName(Text.translatable("itemgroup.catcat"))
             .entries(((displayContext, entries) ->{
@@ -33,10 +33,13 @@ public class ModItems {
                 entries.add(GUIDITE_BOOTS);
                     }))
             .build();
-
-    public static final ItemGroup a =registerItemGroup(Registries.ITEM_GROUP,CUSTOM_GROUP_KEY,CUSTOM_GROUP);
+    public static final ItemGroup CUSTOM_GROUP =registerItemGroup(Registries.ITEM_GROUP, CUSTOM_GROUP_KEY, CUSTOM_GROUP_ENTRY);
 
     public static void initialize() {
+
+
+
+
         // Get the event for modifying entries in the ingredients group.
         // And register an event handler that adds our suspicious item to the ingredients group.
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
@@ -51,6 +54,8 @@ public class ModItems {
                 .register(itemGroup -> itemGroup.add(ModItems.GUIDITE_CHESTPLATE));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT)
                 .register(itemGroup -> itemGroup.add(ModItems.GUIDITE_HELMET));
+        ItemGroupEvents.modifyEntriesEvent(ModItems.CUSTOM_GROUP_KEY)
+                .register((itemGroup) -> itemGroup.add(ModBlocks.CONDENSED_DIRT.asItem()));
     }
 
 

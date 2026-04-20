@@ -5,5 +5,15 @@
   "item.catcat.GUIDITE_BOOTS": "guidite_boots",
   "item.catcat.GUIDITE_LEGGINGS": "guidite_leggings",
   "item.catcat.GUIDITE_CHESTPLATES": "guidite_chestplates",
-  "itemgroup.catcat": "catcat"
+  "itemgroup.catcat": "catcat",
+
+
+  "item.minecraft.potion.effect.tater_potion": "Tater Potion",
+  "item.minecraft.splash_potion.effect.tater_potion": "Splash Tater Potion",
+  "item.minecraft.lingering_potion.effect.tater_potion": "Lingering Tater Potion",
+  "item.minecraft.tipped_arrow.effect.tater_potion": "Tipped Arrow of Tater",
+
+  "effect.catcat.tater_effect": "tater_effect",
+
+  "block.catcat.condensed_dirt": "condensed_dirt"
 }

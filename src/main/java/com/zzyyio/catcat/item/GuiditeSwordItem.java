@@ -39,7 +39,7 @@ public class GuiditeSwordItem extends SwordItem {
         LightningEntity lightningBolt = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
         lightningBolt.setPos(hit.getPos().getX(),hit.getPos().getY(),hit.getPos().getZ());
         world.spawnEntity(lightningBolt);
-        world.createExplosion(null,hit.getPos().getX(),hit.getPos().getY(),hit.getPos().getZ(),50.0f,TNT);
+        world.createExplosion(null,hit.getPos().getX(),hit.getPos().getY(),hit.getPos().getZ(),1.0f,TNT);
         // Nothing has changed to the item stack,
         // so we just return it how it was.
         return TypedActionResult.success(user.getStackInHand(hand));
