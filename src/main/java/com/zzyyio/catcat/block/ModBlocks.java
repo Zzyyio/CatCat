@@ -21,7 +21,11 @@ public class ModBlocks {
             "condensed_dirt",
             true
     );
-
+    public static final Block CONDENSED_OAK_LOG = register(
+            new Block(AbstractBlock.Settings.create().sounds(BlockSoundGroup.WOOD)),
+            "condensed_oak_log",
+            true
+    );
 
     public static Block register(Block block, String name, boolean shouldRegisterItem) {
         // Register the block and its item.

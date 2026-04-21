@@ -35,11 +35,11 @@ public class GuiditeSwordItem extends SwordItem {
         BlockPos frontOfPlayer = user.getBlockPos().offset(user.getHorizontalFacing(), 10);
         // Spawn the lightning bolt.
 
-        HitResult hit = user.raycast(50.0D, 0.0F, false);
+        HitResult hit = user.raycast(500.0D, 0.0F, false);
         LightningEntity lightningBolt = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
         lightningBolt.setPos(hit.getPos().getX(),hit.getPos().getY(),hit.getPos().getZ());
         world.spawnEntity(lightningBolt);
-        world.createExplosion(null,hit.getPos().getX(),hit.getPos().getY(),hit.getPos().getZ(),1.0f,TNT);
+        world.createExplosion(null,hit.getPos().getX(),hit.getPos().getY(),hit.getPos().getZ(),10.0f,TNT);
         // Nothing has changed to the item stack,
         // so we just return it how it was.
         return TypedActionResult.success(user.getStackInHand(hand));

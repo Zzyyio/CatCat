@@ -55,7 +55,10 @@ public class ModItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT)
                 .register(itemGroup -> itemGroup.add(ModItems.GUIDITE_HELMET));
         ItemGroupEvents.modifyEntriesEvent(ModItems.CUSTOM_GROUP_KEY)
-                .register((itemGroup) -> itemGroup.add(ModBlocks.CONDENSED_DIRT.asItem()));
+                .register((itemGroup) -> {
+                    itemGroup.add(ModBlocks.CONDENSED_DIRT.asItem());
+                    itemGroup.add(ModBlocks.CONDENSED_OAK_LOG.asItem());
+                });
     }
 
 
