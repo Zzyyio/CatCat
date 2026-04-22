@@ -8,7 +8,8 @@ import net.minecraft.util.Identifier;
 public class ModEffects {
     public static final StatusEffect TATER_EFFECT = new TaterEffect();
 
+
     public static void initialize() {
         Registry.register(Registries.STATUS_EFFECT, new Identifier("catcat","tater_effect"), TATER_EFFECT);
-    }
+        }
 }

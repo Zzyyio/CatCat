@@ -1,25 +1,13 @@
 package com.zzyyio.catcat;
 
 import com.zzyyio.catcat.block.ModBlocks;
+import com.zzyyio.catcat.damage.ModDamageTypes;
 import com.zzyyio.catcat.effect.ModEffects;
 import com.zzyyio.catcat.init.ModProperties;
 import com.zzyyio.catcat.item.ModItems;
 import com.zzyyio.catcat.potion.ModPotions;
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.biome.v1.BiomeModificationContext;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.Items;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.Potions;
-import net.minecraft.predicate.entity.EntityEffectPredicate;
-import net.minecraft.recipe.BrewingRecipeRegistry;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.server.command.EffectCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,6 +32,7 @@ public class CatCat implements ModInitializer {
         ModEffects.initialize();
         ModPotions.initialize();
         ModProperties.register();
+        ModDamageTypes.initialize();
 		LOGGER.info("Hello Fabric world!");
 	}
 }

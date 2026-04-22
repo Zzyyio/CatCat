@@ -59,6 +59,7 @@ public class ModItems {
                     itemGroup.add(ModBlocks.CONDENSED_DIRT.asItem());
                     itemGroup.add(ModBlocks.CONDENSED_OAK_LOG.asItem());
                     itemGroup.add(ModBlocks.PRISMARINE_LAMP.asItem());
+                    itemGroup.add(ModBlocks.TATER_BLOCK.asItem());
                 });
     }
 

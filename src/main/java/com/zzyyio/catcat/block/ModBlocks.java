@@ -27,7 +27,11 @@ public class ModBlocks {
             new PrismarineLampBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.LANTERN).luminance(PrismarineLampBlock::getLuminance)),
             "prismarine_lamp",
                     true);
-
+    public static final Block TATER_BLOCK = register(
+            new TaterBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.GRASS)),
+            "tater_block",
+            true
+    );
     public static Block register(Block block, String name, boolean shouldRegisterItem) {
         // Register the block and its item.
         Identifier id = new Identifier(CatCat.MOD_ID,name);
