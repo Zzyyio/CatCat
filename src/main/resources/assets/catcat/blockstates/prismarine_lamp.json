@@ -1,9 +1,15 @@
 {
   "variants": {
-    "activated=false": {
+    "strength=0": {
       "model": "catcat:block/prismarine_lamp"
     },
-    "activated=true": {
+    "strength=5": {
+      "model": "catcat:block/prismarine_lamp_on"
+    },
+    "strength=10": {
+      "model": "catcat:block/prismarine_lamp_on"
+    },
+    "strength=15": {
       "model": "catcat:block/prismarine_lamp_on"
     }
   }
