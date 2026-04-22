@@ -18,5 +18,6 @@
   "block.catcat.condensed_dirt": "condensed_dirt",
   "block.catcat.condensed_oak_log": "condensed_oak_log",
   "block.catcat.prismarine_lamp": "prismarine_lamp",
-  "death.attack.tater": "%1$s is killed by potato!"
+  "death.attack.tater": "%1$s is killed by potato!",
+  "block.catcat.tater_block": "tater_block"
 }
