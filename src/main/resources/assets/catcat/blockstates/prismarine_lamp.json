@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "activated=false": {
+      "model": "catcat:block/prismarine_lamp"
+    },
+    "activated=true": {
+      "model": "catcat:block/prismarine_lamp_on"
+    }
+  }
+}

@@ -23,6 +23,10 @@ public class ModBlocks {
             "condensed_oak_log",
             true
     );
+    public static final Block PRISMARINE_LAMP = register(
+            new PrismarineLampBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.LANTERN).luminance(PrismarineLampBlock::getLuminance)),
+            "prismarine_lamp",
+                    true);
 
     public static Block register(Block block, String name, boolean shouldRegisterItem) {
         // Register the block and its item.

@@ -16,5 +16,6 @@
   "effect.catcat.tater_effect": "tater_effect",
 
   "block.catcat.condensed_dirt": "condensed_dirt",
-  "block.catcat.condensed_oak_log": "condensed_oak_log"
+  "block.catcat.condensed_oak_log": "condensed_oak_log",
+  "block.catcat.prismarine_lamp": "prismarine_lamp"
 }

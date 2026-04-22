@@ -58,6 +58,7 @@ public class ModItems {
                 .register((itemGroup) -> {
                     itemGroup.add(ModBlocks.CONDENSED_DIRT.asItem());
                     itemGroup.add(ModBlocks.CONDENSED_OAK_LOG.asItem());
+                    itemGroup.add(ModBlocks.PRISMARINE_LAMP.asItem());
                 });
     }
 
