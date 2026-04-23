@@ -20,15 +20,12 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.apache.commons.compress.compressors.lz77support.LZ77Compressor;
-
-import static net.minecraft.entity.EntityType.FIREBALL;
 import static net.minecraft.world.World.ExplosionSourceType.TNT;
 
 
 public class GuiditeSwordItem extends SwordItem {
     public GuiditeSwordItem(Settings settings){
-        super(GuiditeMaterial.guidite,200, 0.5F,settings);
+        super(GuiditeMaterial.guidite,1000, 0.5F,settings);
     }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -55,6 +52,9 @@ public class GuiditeSwordItem extends SwordItem {
 
         return TypedActionResult.success(stack);
     }
+
+
+
     private void SpawnLightning(int frequency, HitResult hit, World world){
         for(int i=0;i<frequency;i++){
             LightningEntity lightningBolt = new LightningEntity(EntityType.LIGHTNING_BOLT, world);

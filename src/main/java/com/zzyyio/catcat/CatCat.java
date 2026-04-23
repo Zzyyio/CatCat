@@ -5,9 +5,12 @@ import com.zzyyio.catcat.damage.ModDamageTypes;
 import com.zzyyio.catcat.effect.ModEffects;
 import com.zzyyio.catcat.init.ModProperties;
 import com.zzyyio.catcat.item.ModItems;
+import com.zzyyio.catcat.particle.ModParticles;
 import com.zzyyio.catcat.potion.ModPotions;
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,8 +23,7 @@ public class CatCat implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 
-
-	@Override
+    @Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
@@ -33,6 +35,7 @@ public class CatCat implements ModInitializer {
         ModPotions.initialize();
         ModProperties.register();
         ModDamageTypes.initialize();
+        ModParticles.initialize();
 		LOGGER.info("Hello Fabric world!");
 	}
 }
