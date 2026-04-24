@@ -2,6 +2,7 @@ package com.zzyyio.catcat.item;
 
 import com.zzyyio.catcat.material.GuiditeMaterial;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.command.argument.EntityAnchorArgumentType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -14,8 +15,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class GoldenKnightSwordItem extends SwordItem {
@@ -50,15 +52,13 @@ public class GoldenKnightSwordItem extends SwordItem {
             return TypedActionResult.success(stack);
         }
 
-        ACTIVE_DASHES.put(user.getUuid(), new DashState(world.getTime(), world.getTime()));
+        ACTIVE_DASHES.put(user.getUuid(), new DashState(world.getTime()));
         user.getItemCooldownManager().set(this, 20);
         return TypedActionResult.success(stack);
     }
 
     private static void onEndWorldTick(ServerWorld world) {
-        Iterator<ServerPlayerEntity> players = world.getPlayers().iterator();
-        while (players.hasNext()) {
-            ServerPlayerEntity player = players.next();
+        for (ServerPlayerEntity player : world.getPlayers()) {
             DashState state = ACTIVE_DASHES.get(player.getUuid());
             if (state == null) {
                 continue;
@@ -70,10 +70,12 @@ public class GoldenKnightSwordItem extends SwordItem {
             }
 
             long now = world.getTime();
-            LivingEntity target = findNearestTarget(player);
+            LivingEntity target = findNearestTarget(player, state);
 
             if (target != null) {
                 state.lastTargetFoundTick = now;
+                player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, target.getEyePos());
+
                 Vec3d towardsTarget = target.getPos().subtract(player.getPos()).normalize();
                 player.setVelocity(towardsTarget.multiply(TARGET_DASH_SPEED));
                 player.velocityModified = true;
@@ -83,12 +85,18 @@ public class GoldenKnightSwordItem extends SwordItem {
                     player.swingHand(Hand.MAIN_HAND, true);
                     player.attack(target);
                     state.lastAttackTick = now;
+                    state.hitTargets.add(target.getUuid());
                 }
                 continue;
             }
 
-            Vec3d forward = player.getRotationVector().normalize();
-            player.setVelocity(forward.multiply(FORWARD_DASH_SPEED));
+            Vec3d look = player.getRotationVector();
+            Vec3d horizontalForward = new Vec3d(look.x, 0.0D, look.z);
+            if (horizontalForward.lengthSquared() > 0.0D) {
+                horizontalForward = horizontalForward.normalize();
+            }
+            Vec3d velocity = horizontalForward.multiply(FORWARD_DASH_SPEED);
+            player.setVelocity(velocity.x, player.getVelocity().y, velocity.z);
             player.velocityModified = true;
 
             if (now - state.lastTargetFoundTick >= MAX_IDLE_TICKS) {
@@ -97,13 +105,15 @@ public class GoldenKnightSwordItem extends SwordItem {
         }
     }
 
-    private static LivingEntity findNearestTarget(ServerPlayerEntity player) {
+    private static LivingEntity findNearestTarget(ServerPlayerEntity player, DashState state) {
         BoxSearchResult result = new BoxSearchResult();
 
         player.getWorld().getEntitiesByClass(
                 LivingEntity.class,
                 player.getBoundingBox().expand(SEARCH_RADIUS),
-                candidate -> candidate.isAlive() && candidate != player
+                candidate -> candidate.isAlive()
+                        && candidate != player
+                        && !state.hitTargets.contains(candidate.getUuid())
         ).forEach(candidate -> {
             double distance = candidate.squaredDistanceTo(player);
             if (distance < result.bestDistance) {
@@ -116,13 +126,12 @@ public class GoldenKnightSwordItem extends SwordItem {
     }
 
     private static class DashState {
-        private final long startTick;
+        private final Set<UUID> hitTargets = new HashSet<>();
         private long lastTargetFoundTick;
         private long lastAttackTick;
 
-        private DashState(long startTick, long lastTargetFoundTick) {
-            this.startTick = startTick;
-            this.lastTargetFoundTick = lastTargetFoundTick;
+        private DashState(long startTick) {
+            this.lastTargetFoundTick = startTick;
             this.lastAttackTick = startTick - ATTACK_COOLDOWN_TICKS;
         }
     }
