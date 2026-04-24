@@ -19,6 +19,8 @@ public class ModItems {
     public static final Item GUIDITE_LEGGINGS = registerItem("guidite_leggings",new ArmorItem(GuiditeArmorMaterial.guidite, ArmorItem.Type.LEGGINGS, new Item.Settings()));
     public static final Item GUIDITE_CHESTPLATE = registerItem("guidite_chestplate",new ArmorItem(GuiditeArmorMaterial.guidite, ArmorItem.Type.CHESTPLATE, new Item.Settings()));
     public static final Item MAGIC_EGG = registerItem("magic_egg", new MagicEggItem(new Item.Settings().maxCount(16)));
+    public static final Item GOLDEN_KNIGHT_SWORD = registerItem("golden_knight_sword", new GoldenKnightSwordItem(new Item.Settings()));
+
 
     public static final RegistryKey<ItemGroup> CUSTOM_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier("custom_group"));
     public static final ItemGroup CUSTOM_GROUP_ENTRY = FabricItemGroup.builder()
@@ -32,6 +34,7 @@ public class ModItems {
                 entries.add(GUIDITE_LEGGINGS);
                 entries.add(GUIDITE_BOOTS);
                 entries.add(MAGIC_EGG);
+                entries.add(GOLDEN_KNIGHT_SWORD);
                     }))
             .build();
     public static final ItemGroup CUSTOM_GROUP =registerItemGroup(Registries.ITEM_GROUP, CUSTOM_GROUP_KEY, CUSTOM_GROUP_ENTRY);
